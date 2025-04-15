@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+
+    <style>
+
+        body{
+            padding: 20px;
+        }
+
+        button{
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #65b0ff;
+        }
+
+        .resultText{
+            border: 1px black dotted;
+
+        }
+        #result{
+            background-color: antiquewhite;
+            padding: 10px;
+        }
+        .name{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>1. 사용자 이름 불러오기</h1>
+    <button onclick="getUsers()">불러오기</button>
+    <div >
+        <h3 className = 'resultText'>결과</h3>
+        <ul id="result">
+            
+        </ul>
+    </div>
+
+    <script>
+        const result = document.getElementById("result");
+        const API_BASE_URL = "https://jsonplaceholder.typicode.com/users";
+        
+        function getUsers(){
+            axios.get(API_BASE_URL)
+            .then((Response) =>{
+                const data = Response.data;
+                const names = data.map((user) =>{
+                    const li = document.createElement('li');
+                    li.textContent = user.name;
+                    li.classList.add('name');
+                    result.append(li);
+                });
+            })
+            .catch((error) =>{
+                console.log(error);
+                result.innerHTML = `<h1>오류 발생</h1>`
+            })
+        }
+    </script>
+</body>
+    
+</html>
