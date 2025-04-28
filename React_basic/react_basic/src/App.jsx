@@ -1,10 +1,15 @@
 import './App.css'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Main from './components/Main';
 
 function App() {
 
   return (
     <>
-      <h1>리액트 </h1>
+      <Header />
+      <Main />
+      <Footer />
     </>
   )
 }
