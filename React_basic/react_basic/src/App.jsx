@@ -10,6 +10,7 @@ function App() {
       <Header />
       <Main />
       <Footer />
+      <h1>리액트 ~~ </h1>
     </>
   )
 }
