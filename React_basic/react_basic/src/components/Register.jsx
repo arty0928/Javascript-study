@@ -9,58 +9,54 @@ import { useState } from 'react';
 
 const Register = () => {
 
-    const [name, setName] = useState("이름");
-    const [birth, setBirth] = useState("");
-    const [coutry, setCountry] = useState("");
-    const [bio, setBio] = useState("");
+    const [input, setInput] = useState({
+        name: "",
+        birth: "",
+        country: "",
+        bio :""
+    })
 
-    const onChangeName = (e) => {
-        setName(e.target.value);
-    };
-
-    const onChangeBirth = (e) => {
-        setBirth(e.target.value);
+    const onChange = (e) => {
+        console.log(e.target.value, e.target.name);
+        setInput({
+            ...input,
+            [ e.target.name ]: e.target.value
+        })
     }
-
-    const onChangeCountry = (e) => {
-        setCountry(e.target.value);
-    }
-
-    const onChangeBio = (e) => {
-        setBio(e.target.value);
-    }
-
     return (
         <div>
             <div>
                 <input
-                value={name}
-                onChange={onChangeName}
+                    name = "name"
+                value={input.name}
+                onChange={onChange}
                 placeholder={"이름"}
-            />
+                />
+                {input.name}
             </div>
             <div>
                 <input
-                value={birth}    
+                    name = "birth"
+                value={input.birth}    
                 type="date"
-                onChange={onChangeBirth}
+                onChange={onChange}
                 />
-                {birth}
+                {input.birth}
             </div>
 
             <div>
-                <select value={coutry} onChange={onChangeCountry}>
+                <select name = "country" value={input.coutry} onChange={onChange}>
                     <option>국적</option>
                     <option value="kr">한국</option>
                     <option value="us">미국</option>
                     <option value="jp">일본</option>
                 </select>
-                {coutry}
+                {input.coutry}
             </div>
 
             <div>
-                <textarea value={bio} onChange={onChangeBio} />
-                {bio}
+                <textarea name = "bio" value={input.bio} onChange={onChange} />
+                {input.bio}
             </div>
         </div>
     );
